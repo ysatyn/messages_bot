@@ -1,0 +1,4 @@
+pytelegrambotapi
+SQLAlchemy
+aiosqlite
+python-dotenv
