@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+.idea/
+.vscode/
+.git
+docker-compose.override.yml
+my_bot_database.db
+*.db
+.DS_Store

@@ -1,0 +1,9 @@
+services:
+  bot:
+    build: .
+    image: messages_bot:latest
+    env_file:
+      - .env
+    volumes:
+      - ./my_bot_database.db:/app/my_bot_database.db
+    restart: unless-stopped
