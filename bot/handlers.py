@@ -100,7 +100,7 @@ async def handle_start(message: types.Message, bot: AsyncTeleBot, db: AsyncSessi
         if ref_user:
             if ref_user.user_id == user.user_id:
                 await bot.send_message(message.chat.id, "Вы не можете воспользоваться собственной ссылкой")
-                logger.warning(f"User {user_id} attempted to read a note to themselves")
+                logger.warning(f"User {message.from_user.id} attempted to read a note to themselves")
                 return
             creator_user = await crud.get_user_by_ref_code(db, ref_code)
             note = await crud.get_note_by_user_id_and_creator_id(db, user.user_id, creator_user.user_id)
