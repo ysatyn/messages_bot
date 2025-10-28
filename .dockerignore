@@ -12,3 +12,4 @@ docker-compose.override.yml
 my_bot_database.db
 *.db
 .DS_Store
+*.log

@@ -161,7 +161,6 @@ async def get_note_by_user_id_and_creator_id(db: AsyncSession, for_user_id: int,
     Получение заметки, созданной пользователем created_by_user_id для пользователя for_user_id
     Возвращает объект Note, если заметка найдена, иначе None.
     """
-    print(f"Поиск заметки: for_user_id={for_user_id}, created_by_user_id={created_by_user_id}")
     
     result = await db.execute(
         select(Note).where(
@@ -171,7 +170,6 @@ async def get_note_by_user_id_and_creator_id(db: AsyncSession, for_user_id: int,
     )
     note = result.scalars().first()
     
-    print(f"Найденная заметка: {note}")
     return note
 
 async def update_note_text(db: AsyncSession, note_id: int, new_text: str) -> Optional[Note]:
@@ -214,6 +212,7 @@ async def set_note_as_read(db: AsyncSession, note_id: int) -> Optional[Note]:
     note = await get_note_by_id(db, note_id)
     if note:
         note.is_read = True
+        note.fake_is_read = True
         db.add(note)
         await db.commit()
         await db.refresh(note)
@@ -226,7 +225,7 @@ async def set_note_as_unread(db: AsyncSession, note_id: int) -> Optional[Note]:
     """
     note = await get_note_by_id(db, note_id)
     if note:
-        note.is_read = False
+        note.fake_is_read = False
         db.add(note)
         await db.commit()
         await db.refresh(note)

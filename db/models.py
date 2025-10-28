@@ -32,6 +32,7 @@ class Note(Base):
     for_user_id: Mapped[int] = mapped_column(Integer, nullable=False)
     text: Mapped[str] = mapped_column(Text, nullable=False)
     created_at: Mapped[datetime.datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    fake_is_read: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     is_read: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
 
     created_by_user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.user_id"), nullable=False)
